@@ -44,10 +44,14 @@ int main(int argc, char** argv)
 
 				case 2:
 					cout << "[2] Insertion sort" << endl;
+					sorting.insertionSort(input, size);
 					break;
 
 				case 3:
 					cout << "[3] Merge sort" << endl;
+					sorting.mergeSort(input, 0, size);
+					for(int i = 0; i < size; i++)
+				 		cout << input[i] << endl;
 					break;
 
 				case 4:
