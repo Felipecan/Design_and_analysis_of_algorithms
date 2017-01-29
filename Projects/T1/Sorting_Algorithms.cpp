@@ -133,12 +133,12 @@ void Sorting_Algorithms::selectionSort(int* v, int size)
 
  	}
 
- 	for(int i = beg; i < k; i++)
+ 	/*for(int i = beg; i < k; i++)
  	{
 
  	cout<< 	v[i] << endl;
 
- 	}
+ 	}*/
 
  }
 
@@ -157,5 +157,52 @@ void Sorting_Algorithms::selectionSort(int* v, int size)
 
  	}
  	
+ }
+
+ void Sorting_Algorithms::quickSort(int* v, int left, int right)
+ {
+
+ 	int pivo = left;
+ 	int i, ch, j;
+
+ 	for(i = left+1; i <= right; i++)
+ 	{
+
+ 		j = i;
+
+ 		if(v[j] < v[pivo])
+ 		{
+
+ 			ch = v[j];
+
+ 			while(j > pivo)
+ 			{
+
+ 				v[j] = v[j-1];
+ 				j--;
+
+ 			}
+ 			
+ 			v[j] = ch;
+ 			pivo++;
+
+ 		}
+
+ 	}
+
+ 	if((pivo-1) >= left)
+ 	{
+
+ 		quickSort(v, left, (pivo-1));
+
+ 	}
+
+ 	if((pivo+1) <= right)
+ 	{
+
+ 		quickSort(v, (pivo+1), right);
+
+ 	}
+
  }
 
