@@ -49,7 +49,7 @@ int main(int argc, char** argv)
 
 				case 3:
 					cout << "[3] Merge sort" << endl;
-					sorting.mergeSort(input, 0, size-1);
+					sorting.mergeSort(input, 0, (size-1));
 					for(int i = 0; i < size; i++)
 				 		cout << input[i] << endl;
 					break;
@@ -63,6 +63,9 @@ int main(int argc, char** argv)
 
 				case 5:
 					cout << "[5] Heapsort" << endl;
+					sorting.heapSort(input, (size));
+					for(int i = 0; i < size; i++)
+				 		cout << input[i] << endl;
 					break;
 
 				default:

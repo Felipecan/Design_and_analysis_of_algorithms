@@ -206,3 +206,65 @@ void Sorting_Algorithms::selectionSort(int* v, int size)
 
  }
 
+ void Sorting_Algorithms::heapSort(int* v, int tam)
+ {
+
+ 	int size = tam;
+ 	int i = tam/2;
+ 	int father, son, t;
+
+ 	for(;;)
+ 	{
+
+ 		if(i > 0)
+ 		{
+
+ 			i--;
+ 			t = v[i];
+
+ 		}
+ 		else   
+ 		{
+
+ 			tam--;
+
+ 			if(tam == 0) 
+ 				return;
+
+ 			t = v[tam];
+ 			v[tam] = v[0];
+
+ 		}
+
+ 		father = i;
+ 		son = i*2+1;
+
+ 		while(son < tam)
+ 		{
+
+ 			if((son+1 < tam) && (v[son+1] > v[son]))
+ 				son++;
+
+ 			if(v[son] > t)
+ 			{
+
+ 				v[father] = v[son];
+ 				father = son;
+ 				son = father*2+1;
+
+ 			}
+ 			else
+ 			{
+
+ 				break;
+
+ 			}
+
+ 		}
+
+ 		v[father] = t;
+
+ 	}
+
+ }
+

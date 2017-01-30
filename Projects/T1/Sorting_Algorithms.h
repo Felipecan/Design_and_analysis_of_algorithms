@@ -18,6 +18,7 @@ class Sorting_Algorithms
 		void merge(int*, int, int, int);
 		void mergeSort(int* v, int beg, int end);
 		void quickSort(int* v, int left, int right);
+		void heapSort(int* v, int tam);
 
 
 };
