@@ -49,10 +49,10 @@ void Sorting_Algorithms::selectionSort(int* v, int size)
 
 }
 
- void Sorting_Algorithms::insertionSort(int* v, int size)
- {
+void Sorting_Algorithms::insertionSort(int* v, int size)
+{
 
- 	for(int i = 1; i < size; i++)
+	for(int i = 1; i < size; i++)
  	{
 
  		int k = v[i];
@@ -73,9 +73,84 @@ void Sorting_Algorithms::selectionSort(int* v, int size)
  	for(int i = 0; i < size; i++)
 		cout << v[i] << endl;
 
- }
+}
 
- void Sorting_Algorithms::merge(int* v, int beg, int middle, int end)
+void Sorting_Algorithms::mergeSort(int* v, int beg, int end)
+{
+
+	int i, j, k, middle;
+	int* v_aux;
+
+	if(beg == end)
+		return;
+
+	middle = (beg+end)/2;
+	mergeSort(v, beg, middle);
+	mergeSort(v, middle+1, end);
+
+	i = beg;
+	j = middle+1;
+	k = 0;
+
+	v_aux = new int[end-beg+1];
+	//v_aux = (int *)malloc(sizeof(int)*(end-beg+1));
+
+	while((i < middle+1) || (j < end+1))
+	{
+
+		if(i == middle+1)
+		{
+
+			v_aux[k] = v[j];
+			j++;
+			k++;
+
+		}
+		else
+		{
+
+			if(j == end+1)
+			{
+
+				v_aux[k] = v[i];
+				i++;
+				k++;
+
+			}
+			else
+			{
+
+				if(v[i] < v[j])
+				{
+
+					v_aux[k] = v[i];
+					i++;
+					k++;
+
+				}
+				else
+				{
+
+					v_aux[k] = v[j];
+					j++;
+					k++;
+
+				}
+
+			}
+
+		}
+
+	}
+
+	for(i = beg; i <= end; i++)
+		v[i] = v_aux[i-beg];
+
+	delete[] v_aux;
+	
+}
+
+/* void Sorting_Algorithms::merge(int* v, int beg, int middle, int end)
  {
 
  	int i, j, k;
@@ -133,19 +208,19 @@ void Sorting_Algorithms::selectionSort(int* v, int size)
 
  	}
 
- 	/*for(int i = beg; i < k; i++)
- 	{
+ 	//for(int i = beg; i < k; i++)
+ 	//{
 
- 	cout<< 	v[i] << endl;
+ 	//cout<< 	v[i] << endl;
 
- 	}*/
+ 	//}
 
  }
 
- void Sorting_Algorithms::mergeSort(int* v, int beg, int end)
- {
+void Sorting_Algorithms::mergeSort(int* v, int beg, int end)
+{
 
- 	if(beg < end)
+	if(beg < end)
  	{
 
  		int middle = (beg + end) / 2;
@@ -157,10 +232,10 @@ void Sorting_Algorithms::selectionSort(int* v, int size)
 
  	}
  	
- }
+}*/
 
- void Sorting_Algorithms::quickSort(int* v, int left, int right)
- {
+void Sorting_Algorithms::quickSort(int* v, int left, int right)
+{
 
  	int pivo = left;
  	int i, ch, j;
@@ -204,10 +279,10 @@ void Sorting_Algorithms::selectionSort(int* v, int size)
 
  	}
 
- }
+}
 
- void Sorting_Algorithms::heapSort(int* v, int tam)
- {
+void Sorting_Algorithms::heapSort(int* v, int tam)
+{
 
  	int size = tam;
  	int i = tam/2;
@@ -266,5 +341,5 @@ void Sorting_Algorithms::selectionSort(int* v, int size)
 
  	}
 
- }
+}
 
