@@ -38,31 +38,31 @@ int main(int argc, char** argv)
 			{
 
 				case 1:
-					cout << "[1] Selection sort" << endl;
+					cout << "[1] Selection sort\n" << endl;
 					sorting.selectionSort(input, size);
 					break;
 
 				case 2:
-					cout << "[2] Insertion sort" << endl;
+					cout << "[2] Insertion sort\n" << endl;
 					sorting.insertionSort(input, size);
 					break;
 
 				case 3:
-					cout << "[3] Merge sort" << endl;
+					cout << "[3] Merge sort\n" << endl;
 					sorting.mergeSort(input, 0, (size-1));
 					for(int i = 0; i < size; i++)
 				 		cout << input[i] << endl;
 					break;
 
 				case 4:
-					cout << "[4] Quicksort" << endl;
+					cout << "[4] Quicksort\n" << endl;
 					sorting.quickSort(input, 0, (size-1));
 					for(int i = 0; i < size; i++)
 				 		cout << input[i] << endl;
 					break;
 
 				case 5:
-					cout << "[5] Heapsort" << endl;
+					cout << "[5] Heapsort\n" << endl;
 					sorting.heapSort(input, (size));
 					for(int i = 0; i < size; i++)
 				 		cout << input[i] << endl;
