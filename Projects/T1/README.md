@@ -1,6 +1,8 @@
 Trabalho 1 de APA - Ordenação
 ===================
 
+Aluno: Felipe da Cunha, 11328535
+-----------
 
 **Atenção**, antes de executar o código, **leia** esse documento:
 
