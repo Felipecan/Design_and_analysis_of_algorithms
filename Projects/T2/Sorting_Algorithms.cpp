@@ -44,9 +44,6 @@ void Sorting_Algorithms::selectionSort(int* v, int size)
 
 	}
 
-	for(int i = 0; i < size; i++) //print...
-		cout << v[i] << endl;
-
 }
 
 void Sorting_Algorithms::insertionSort(int* v, int size)
@@ -69,9 +66,6 @@ void Sorting_Algorithms::insertionSort(int* v, int size)
  		v[j+1] = k; //como o j voltou a um valor baixo, ele adiciona mais um e inseri o k v[...]
 
  	}
-
- 	for(int i = 0; i < size; i++) //print
-		cout << v[i] << endl;
 
 }
 
@@ -255,6 +249,14 @@ void Sorting_Algorithms::heapSort(int* v, int num_elements)
  		v[father] = t;
 
  	}
+
+}
+
+void Sorting_Algorithms::copy(int* d, int* o, int size)
+{
+
+	for(int i = 0; i < size; i++)
+		d[i] = o[i];
 
 }
 

@@ -1,7 +1,7 @@
 CC = g++
 
 all:
-	$(CC) -o sorting *.cpp
+	$(CC) -O3 -o sorting *.cpp
 
 clean:
 	rm sorting
