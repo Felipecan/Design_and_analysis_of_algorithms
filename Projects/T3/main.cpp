@@ -59,7 +59,10 @@ int main(int argc, char** argv)
 		else
 		{
 
-
+			cout << "Opcao invalida, insira um numero de 1 a 3" << endl;
+			cout << "[1] Counting sort" << endl;
+			cout << "[2] Bucket sort" << endl;
+			cout << "[3] Radix sort" << endl;
 
 		}
 
@@ -68,6 +71,9 @@ int main(int argc, char** argv)
 	{
 
 		cout << "Argumentos de entrada invalido. ATENCAO AS OPCOES: " << endl;
+		cout << "[1] Counting sort" << endl;
+		cout << "[2] Bucket sort" << endl;
+		cout << "[3] Radix sort" << endl;
 
 
 	}
