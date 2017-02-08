@@ -1,4 +1,4 @@
-Trabalho 1 de APA - Ordenação
+Trabalho 3 de APA - Ordenação 3
 ===================
 
 Aluno: Felipe da Cunha, 11328535
@@ -8,13 +8,11 @@ Aluno: Felipe da Cunha, 11328535
 
 > - Para compilar o código simplesmente faça: g++ -o out *.cpp.
 > - O projeto acompanha o makefile, é recomendado utilizá-lo.
-> - Após compilar o código, para executar basta seguir o exemplo: ./sorting [argumento] < test.in > test.out
+> - Após compilar o código, para executar basta seguir o exemplo: ./sorting [argumento] < example.in > example.out
 
 **Importante:** Os argumentos validos são os seguintes:
-> - (**1**) Selection sort
-> - (**2**) Insertion sort
-> - (**3**) Merge sort
-> - (**4**) Quicksort
-> - (**5**) Heapsort
+> - (**1**) Counting sort
+> - (**2**) Bucket sort
+> - (**3**) Radix sort
 
 

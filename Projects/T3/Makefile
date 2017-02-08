@@ -5,5 +5,5 @@ all:
 
 clean:
 	rm sorting
-	rm out/*.out
+	rm *.out
 
