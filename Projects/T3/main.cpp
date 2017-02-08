@@ -28,7 +28,7 @@ int main(int argc, char** argv)
 			{
 
 				case 1:
-					cout << "[1] Couting sort" << endl;
+					cout << "[1] Counting sort" << endl;
 					lsa.countingSort(input, v_size);
 					for(int i = 0; i < v_size; i++)
 						cout << input[i] << endl;
