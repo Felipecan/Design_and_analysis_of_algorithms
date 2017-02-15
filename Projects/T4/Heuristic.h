@@ -20,7 +20,8 @@ class Heuristic
 		//insertion sort p/ intro e sozinho
 		void insertionSort(int* v, int size);
 
-		//radixs 
+		//radixs
+		void  radixSort_num(int* v, int size) ;
 
 		//rotinas auxiliares
 

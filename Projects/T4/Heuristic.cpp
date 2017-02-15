@@ -154,3 +154,41 @@ void Heuristic::introsort(int* v, int size)
 	}
 
 }
+
+void Heuristic::radixSort_num(int* v, int size)
+{
+
+	int j;
+	int* v_aux = new int[size];
+
+	for(int sft = 31; sft > -1; --sft)
+	{
+
+		j = 0;
+
+		for(int i = 0; i < size; ++i)
+		{
+
+			bool mv = (v[i] << sft) >= 0;
+
+			if(sft == 0 ? !mv : mv)
+			{
+				v[i-j] = v[i];
+			}
+			else
+			{
+				v_aux[j++] = v[i];
+			}
+
+		}
+
+		for(int i = 0; i < j; i++)
+		{
+			v[ (size-j)+i ] = v_aux[i];
+		}
+
+	}
+
+	delete v_aux;
+
+}

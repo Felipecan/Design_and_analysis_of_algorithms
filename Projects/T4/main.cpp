@@ -16,7 +16,8 @@ int main()
 	for(int i = 0; std::cin >> aux; i++)
 		input_v[i] = aux;
 
-	h.introsort(input_v, size);
+	//h.introsort(input_v, size);
+	h.radixSort_num(input_v, size);
 	for(int i = 0; i < size; i++)
 		std::cout << input_v[i] << std::endl;
 
