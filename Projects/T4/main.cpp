@@ -1,24 +1,32 @@
 #include "Heuristic.h"
 
-#include <iostream>
-
 int main()
 {
 
 	Heuristic h;
 	int size;
 	int aux;
-	int* input_v;
+	std::vector<int> input_v;
 
 	std::cin >> size;
-	input_v = new int[size];
+	input_v.reserve(size);
 
-	for(int i = 0; std::cin >> aux; i++)
-		input_v[i] = aux;
+	while(std::cin >> aux)
+		input_v.push_back(aux);
 
-	//h.introsort(input_v, size);
-	h.radixSort_num(input_v, size);
-	for(int i = 0; i < size; i++)
-		std::cout << input_v[i] << std::endl;
+	std::string s = "asçkldjfçlskjdfçklsjadfçlkjsaf";
+	std::locale loc;
+
+	std::cout << s << std::endl;
+
+	if(std::isalpha(s[0], loc))
+		std::cout << "true" << std::endl;
+
+	if(!std::isalpha(s[0], loc))
+		std::cout << "false" << std::endl;
+
+	//h.radixSort_num(&input_v, size);
+	//for(int i = 0; i < size; i++)
+	//	std::cout << input_v[i] << std::endl;
 
 }

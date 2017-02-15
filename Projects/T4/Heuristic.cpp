@@ -1,41 +1,39 @@
 #include "Heuristic.h"
 
-#include <cmath>
-
 Heuristic::Heuristic(){}
 
 Heuristic::~Heuristic(){}
 
-int Heuristic::partition(int* v, int left, int right)
+int Heuristic::partition(std::vector<int>* v, int left, int right)
 {
 
-	int pivot = v[right];
+	int pivot = v->at(right);
 	int aux;
 	int i = left;
 
 	for(int j = left; j < right; ++j)
 	{
 
-		if(v[j] <= pivot)
+		if(v->at(j) <= pivot)
 		{
 
-			aux = v[j];
-			v[j] = v[i];
-			v[i] = aux;
+			aux = v->at(j);
+			v->at(j) = v->at(i);
+			v->at(i) = aux;
 			i++;
 
 		}
 
 	}
 
-	v[right] = v[i];
-	v[i] = pivot;
+	v->at(right) = v->at(i);
+	v->at(i) = pivot;
 
 	return i;
 
 }
 
-void Heuristic::quicksort(int* v, int left, int right)
+void Heuristic::quicksort(std::vector<int>* v, int left, int right)
 {
 
 	if(left < right)
@@ -49,14 +47,14 @@ void Heuristic::quicksort(int* v, int left, int right)
 
 }
 
-void Heuristic::maxHeapify(int* v, int heapSize, int index)
+void Heuristic::maxHeapify(std::vector<int>* v, int heapSize, int index)
 {
 
 	int left = (index+1) * 2 - 1;
 	int right = (index+1)*2;
 	int largest = 0;
 
-	if(left < heapSize && v[left] > v[index])
+	if(left < heapSize && v->at(left) > v->at(index))
 	{
 		largest = left;
 	}
@@ -65,15 +63,15 @@ void Heuristic::maxHeapify(int* v, int heapSize, int index)
 		largest = index;
 	}
 
-	if(right < heapSize && v[right] > v[largest])
+	if(right < heapSize && v->at(right) > v->at(largest))
 		largest = right;
 
 	if(largest != index)
 	{
 
-		int aux = v[index];
-		v[index] = v[largest];
-		v[largest] = aux;
+		int aux = v->at(index);
+		v->at(index) = v->at(largest);
+		v->at(largest) = aux;
 
 		maxHeapify(v, heapSize, largest);
 
@@ -81,7 +79,7 @@ void Heuristic::maxHeapify(int* v, int heapSize, int index)
 
 }
 
-void Heuristic::heapsort(int* v, int size)
+void Heuristic::heapsort(std::vector<int>* v, int size)
 {
 
 	int heapSize = size;
@@ -92,9 +90,9 @@ void Heuristic::heapsort(int* v, int size)
 	for(int i = size-1; i > 0; --i)
 	{
 
-		int aux = v[i];
-		v[i] = v[0];
-		v[0] = aux;
+		int aux = v->at(i);
+		v->at(i) = v->at(0);
+		v->at(0) = aux;
 
 		--heapSize;
 		maxHeapify(v, heapSize, 0);
@@ -103,7 +101,7 @@ void Heuristic::heapsort(int* v, int size)
 
 }
 
-void Heuristic::insertionSort(int* v, int size)
+void Heuristic::insertionSort(std::vector<int>* v, int size)
 {
 
 	for(int i = 1; i < size; ++i)
@@ -114,12 +112,12 @@ void Heuristic::insertionSort(int* v, int size)
 		while(j > 0)
 		{
 
-			if(v[j-1] > v[j])
+			if(v->at(j-1) > v->at(j))
 			{
 
-				v[j-1] ^= v[j];
-				v[j] ^= v[j-1];
-				v[j-1] ^= v[j];
+				v->at(j-1) ^= v->at(j);
+				v->at(j) ^= v->at(j-1);
+				v->at(j-1) ^= v->at(j);
 
 				--j;
 
@@ -135,7 +133,7 @@ void Heuristic::insertionSort(int* v, int size)
 
 }
 
-void Heuristic::introsort(int* v, int size)
+void Heuristic::introsort(std::vector<int>* v, int size)
 {
 
 	int part_size = partition(v, 0, size-1);
@@ -155,7 +153,7 @@ void Heuristic::introsort(int* v, int size)
 
 }
 
-void Heuristic::radixSort_num(int* v, int size)
+void Heuristic::radixSort_num(std::vector<int>* v, int size)
 {
 
 	int j;
@@ -169,26 +167,46 @@ void Heuristic::radixSort_num(int* v, int size)
 		for(int i = 0; i < size; ++i)
 		{
 
-			bool mv = (v[i] << sft) >= 0;
+			bool mv = (v->at(i) << sft) >= 0;
 
 			if(sft == 0 ? !mv : mv)
 			{
-				v[i-j] = v[i];
+				v->at(i-j) = v->at(i);
 			}
 			else
 			{
-				v_aux[j++] = v[i];
+				v_aux[j++] = v->at(i);
 			}
 
 		}
 
 		for(int i = 0; i < j; i++)
 		{
-			v[ (size-j)+i ] = v_aux[i];
+			v->at( (size-j)+i ) = v_aux[i];
 		}
 
 	}
 
 	delete v_aux;
+
+}
+
+
+
+
+void Heuristic::analysis(std::vector<std::string>* v, int size)
+{
+
+	std::locale loc;
+
+	if(size < 20)
+		is_insert = true;
+
+	for(int i = 0; i < size; i++)
+	{
+
+		
+
+	}
 
 }
