@@ -191,22 +191,107 @@ void Heuristic::radixSort_num(std::vector<int>* v, int size)
 
 }
 
+void Heuristic::countingSort(std::vector<int>* v, int size)
+{
 
+	int z = 0;
+	int min = *min_element(v->begin(), v->end());
+	int max = *max_element(v->begin(), v->end());
+	int len = max - min + 1;
+
+	int* v_aux = (int*)calloc(len, sizeof(int));
+
+	for(int i = 0; i < size; i++)
+		v_aux[ v->at(i) - min ]++;
+
+	for(int i = min; i <= max; i++)
+	{
+
+		while(v_aux[i-min]-- > 0)
+		{
+
+			v->at(z) = i;
+			++z;
+
+		}
+
+	}
+
+	delete v_aux;
+
+}
 
 
 void Heuristic::analysis(std::vector<std::string>* v, int size)
 {
 
 	std::locale loc;
+	int sort = 0;
+	int unsort = 0;
 
 	if(size < 20)
 		is_insert = true;
 
 	for(int i = 0; i < size; i++)
 	{
-
 		
+		if(i == size-1)
+			break;
+
+		if(atoi(v->at(i).c_str()) <= atoi(v->at(i+1).c_str()))
+		{
+			sort++;
+		}
+		else
+		{
+			unsort++;
+		}
 
 	}
+
+	if(sort/unsort > 10)//colocar alguma coisa aqui pra definir o quão ordneado é
+		entropy = true;
+
+	/*std::cout << "sort " << sort << std::endl;
+	std::cout << "unsort " << unsort << std::endl;
+	std::cout << "div " << sort/unsort << std::endl;*/
+
+}
+
+void Heuristic::heuristic(std::vector<std::string>* v, int size)
+{
+
+	analysis(v, size);
+
+	if(is_string)
+	{
+		//radiz string
+		break;
+	}
+
+	if(is_insert)
+	{
+		//insertion
+		break;
+	}
+
+	if(repetidos && max < 10000)
+	{
+		//counting
+	}
+	else
+	{
+
+		if(entropy)
+		{
+			//intro
+		}
+		else
+		{
+			//radix num
+		}
+
+	}
+
 
 }
