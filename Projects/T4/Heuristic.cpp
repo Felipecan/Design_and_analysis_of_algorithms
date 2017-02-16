@@ -7,7 +7,6 @@ Heuristic::Heuristic()
 	is_string = false;
 	entropy = false;
 	count_enable = false;
-	max = false;
 
 }
 
@@ -324,12 +323,6 @@ void Heuristic::analysis(std::vector<std::string>* v, int size)
 		if(((float)sort/size)*100 > 85)//colocar alguma coisa aqui pra definir o quão ordneado é
 			entropy = true;
 
-		//chave máxima
-		long elem_max = *max_element(v_internal.begin(), v_internal.end());
-		if(elem_max < 10000)
-			max = true;
-
-
 		std::set<long> set_aux_diff(v_internal.begin(), v_internal.end());
 	    aux = set_aux_diff.size();
 	    if(((float)aux/size)*100 <= 50) //mais de 50% da variáveis repetidas
@@ -363,7 +356,7 @@ void Heuristic::heuristic(std::vector<std::string>* v, int size)
 		return;
 	}
 
-	if(count_enable && max)
+	if(count_enable)
 	{
 		std::cout << "counting sort" << std::endl;
 		countingSort(&v_internal, size);

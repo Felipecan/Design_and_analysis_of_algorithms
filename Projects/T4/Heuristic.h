@@ -18,7 +18,6 @@ class Heuristic
 		bool is_string;
 		bool entropy;
 		bool count_enable;
-		bool max;
 		std::vector<long> v_internal;
 
 	public:
