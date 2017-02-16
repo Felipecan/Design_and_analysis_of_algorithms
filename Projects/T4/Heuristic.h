@@ -37,7 +37,7 @@ class Heuristic
 		void insertionSort(std::vector<long>* v, int size);
 
 					          //radixs
-		void  radixSort_num(std::vector<long>* v, int size);
+		void radixSort_num(std::vector<long>* v, int size);
 
 							 //counting
 		void countingSort(std::vector<long>* v, int size);

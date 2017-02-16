@@ -5,10 +5,10 @@ int main()
 
 	Heuristic h;
 	int size;
-	std::string aux;
-	//long aux;
-	std::vector<std::string> input_v;
-	//std::vector<long> input_v;
+	//std::string aux;
+	long aux;
+	//std::vector<std::string> input_v;
+	std::vector<long> input_v;
 
 	std::cin >> size;
 	input_v.reserve(size);
@@ -16,7 +16,10 @@ int main()
 	while(std::cin >> aux)
 		input_v.push_back(aux);
 
-	h.heuristic(&input_v, size);
+	//h.heuristic(&input_v, size);
+	h.radixSort_num(&input_v, size);
+	for(int i = 0; i < size; i++)
+		std::cout << input_v[i] << std::endl;
 
 
 

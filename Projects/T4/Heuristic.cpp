@@ -168,7 +168,7 @@ void Heuristic::radixSort_num(std::vector<long>* v, int size)
 	int j;
 	long* v_aux = new long[size];
 
-	for(long sft = 31; sft > -1; --sft)
+	for(int sft = 63; sft > -1; --sft) //shift 63 por conta do long
 	{
 
 		j = 0;
