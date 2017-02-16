@@ -230,14 +230,65 @@ void Heuristic::countingSort(std::vector<long>* v, int size)
 
 }
 
+size_t Heuristic::max_eleme(std::vector<std::string>* v, int size)
+{
+
+	size_t max_ele = v->at(0).size();
+
+	for(int i = 1; i < size; i++)
+	{
+		if(v->at(i).size() > max_ele)
+			max_ele = v->at(i).size();
+	}
+
+	return max_ele;
+
+}
+
+void Heuristic:: countSort_str(std::vector<std::string>* v, int size, size_t loop_i)
+{
+
+	std::string* str_aux = new std::string[size];
+	int* c_mudar = new int[257];
+
+	for(int i = 0; i < 257; i++)
+		c_mudar[i] = 0;
+
+	for(int i = 0; i < size; i++)
+		c_mudar[ loop_i < v->at(i).size() ? (int)(unsigned char)v->at(i)[loop_i]+1 : 0 ]++;
+
+	for(int i = 1; i < 257; i++)
+		c_mudar[i] += c_mudar[i-1];
+
+	for(int i = size-1; i >= 0; i--)
+	{
+
+		str_aux[ c_mudar[ loop_i < v->at(i).size() ? (int)(unsigned char)v->at(i)[loop_i]+1 : 0 ] - 1 ] = v->at(i);
+		c_mudar[ loop_i < v->at(i).size() ? (int)(unsigned char)v->at(i)[loop_i]+1 : 0 ]--;
+
+	}
+
+	for(int i = 0; i < size; i++)
+		v->at(i) = str_aux[i];
+
+	delete[] str_aux;
+	delete[] c_mudar;
+
+}
+
+void Heuristic::radixSort_str(std::vector<std::string>* v, int size)
+{
+	size_t max = max_eleme(v, size);
+	for(size_t i = max; i > 0; i--)
+		countSort_str(v, size, i-1);
+}
 
 void Heuristic::analysis(std::vector<std::string>* v, int size)
 {
 
-	//std::locale loc;
+	bool test = false;
 	int sort = 0;
-	int aux;
-	//int 
+	int aux; 
 	v_internal.reserve(size);
 
 	for(int i = 0; i < size; i++)
@@ -253,27 +304,38 @@ void Heuristic::analysis(std::vector<std::string>* v, int size)
 			sort++;
 		}
 
-		//if(v->at(i).find_first_of() == v->at(i).end())
+		if(!test)
+		{
+			if(isalpha(v->at(i)[0]))
+			{
+				is_string = true;
+				test = true;
+			}
+		}
 
 	}
 
-	if(size <= 20)
-		is_insert = true;
+	if(!is_string)
+	{
 
-	if(((float)sort/size)*100 > 85)//colocar alguma coisa aqui pra definir o quão ordneado é
-		entropy = true;
+		if(size <= 20)
+			is_insert = true;
 
-	//chavae máxima
-	long elem_max = *max_element(v_internal.begin(), v_internal.end());
-	if(elem_max < 10000)
-		max = true;
+		if(((float)sort/size)*100 > 85)//colocar alguma coisa aqui pra definir o quão ordneado é
+			entropy = true;
+
+		//chave máxima
+		long elem_max = *max_element(v_internal.begin(), v_internal.end());
+		if(elem_max < 10000)
+			max = true;
 
 
-	std::set<long> set_aux_diff(v_internal.begin(), v_internal.end());
-    aux = set_aux_diff.size();
-    if(((float)aux/size)*100 <= 50) //mais de 50% da variáveis repetidas
-    	count_enable = true;
-
+		std::set<long> set_aux_diff(v_internal.begin(), v_internal.end());
+	    aux = set_aux_diff.size();
+	    if(((float)aux/size)*100 <= 50) //mais de 50% da variáveis repetidas
+	    	count_enable = true;
+	
+	}
     
 
 }
@@ -283,11 +345,14 @@ void Heuristic::heuristic(std::vector<std::string>* v, int size)
 
 	analysis(v, size);
 
-	/*if(is_string)
+	if(is_string)
 	{
-		//radiz string
+		std::cout << "radix sort strings" << std::endl;
+		radixSort_str(v, size);
+		for(int i = 0; i < size; i++)
+			std::cout << v->at(i) << std::endl;
 		return;
-	}*/
+	}
 
 	if(is_insert)
 	{	

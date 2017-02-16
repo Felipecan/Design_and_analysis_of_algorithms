@@ -4,7 +4,6 @@
 #include <cmath>
 #include <cstdlib>
 #include <iostream>
-#include <locale>
 #include <vector>
 #include <string>
 #include <algorithm>
@@ -38,12 +37,15 @@ class Heuristic
 
 					          //radixs
 		void radixSort_num(std::vector<long>* v, int size);
+		void radixSort_str(std::vector<std::string>* v, int size);
 
 							 //counting
 		void countingSort(std::vector<long>* v, int size);
+		void countSort_str(std::vector<std::string>* v, int size, size_t loop_i);
 
 						//rotinas auxiliares
 		void analysis(std::vector<std::string>* v, int size);
+		size_t max_eleme(std::vector<std::string>* v, int size);
 
 							//heuristica
 		void heuristic(std::vector<std::string>* v, int size);
