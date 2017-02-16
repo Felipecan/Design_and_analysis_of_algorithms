@@ -5,10 +5,10 @@ int main()
 
 	Heuristic h;
 	int size;
-	//std::string aux;
-	int aux;
-	//std::vector<std::string> input_v;
-	std::vector<int> input_v;
+	std::string aux;
+	//long aux;
+	std::vector<std::string> input_v;
+	//std::vector<long> input_v;
 
 	std::cin >> size;
 	input_v.reserve(size);
@@ -16,20 +16,26 @@ int main()
 	while(std::cin >> aux)
 		input_v.push_back(aux);
 
+	h.heuristic(&input_v, size);
+
+
+
 	//h.analysis(&input_v, size);
 	/*std::string s = "asçkldjfçlskjdfçklsjadfçlkjsaf";
-	std::locale loc;
+	
+	auto pos = std::string::npos
 
-	std::cout << s << std::endl;
+	while((pos = to_search.find))
+*/
+	//h.introsort(&input_v, size);
+	//h.heapsort(&input_v, size);
+	//h.insertionSort(&input_v, size);
+	//h.quicksort(&input_v, 0, size-1);
+	//h.radixSort_num(&input_v, size);
+	//h.countingSort(&input_v, size);
+	//for(int i = 0; i < size; i++)
+	//	std::cout << input_v[i] << std::endl;
 
-	if(std::isalpha(s[0], loc))
-		std::cout << "true" << std::endl;
-
-	if(!std::isalpha(s[0], loc))
-		std::cout << "false" << std::endl;*/
-
-	h.countingSort(&input_v, size);
-	for(int i = 0; i < size; i++)
-		std::cout << input_v[i] << std::endl;
+	return 0;
 
 }

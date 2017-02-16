@@ -1,17 +1,26 @@
 #include "Heuristic.h"
 
-Heuristic::Heuristic(){}
+Heuristic::Heuristic()
+{
+
+	is_insert = false;
+	is_string = false;
+	entropy = false;
+	count_enable = false;
+	max = false;
+
+}
 
 Heuristic::~Heuristic(){}
 
-int Heuristic::partition(std::vector<int>* v, int left, int right)
+long Heuristic::partition(std::vector<long>* v, long left, long right)
 {
 
-	int pivot = v->at(right);
-	int aux;
-	int i = left;
+	long pivot = v->at(right);
+	long aux;
+	long i = left;
 
-	for(int j = left; j < right; ++j)
+	for(long j = left; j < right; ++j)
 	{
 
 		if(v->at(j) <= pivot)
@@ -33,13 +42,13 @@ int Heuristic::partition(std::vector<int>* v, int left, int right)
 
 }
 
-void Heuristic::quicksort(std::vector<int>* v, int left, int right)
+void Heuristic::quicksort(std::vector<long>* v, long left, long right)
 {
 
 	if(left < right)
 	{	
 
-		int p = partition(v, left, right);
+		long p = partition(v, left, right);
 		quicksort(v, left, p-1);
 		quicksort(v, p+1, right);
 
@@ -47,12 +56,12 @@ void Heuristic::quicksort(std::vector<int>* v, int left, int right)
 
 }
 
-void Heuristic::maxHeapify(std::vector<int>* v, int heapSize, int index)
+void Heuristic::maxHeapify(std::vector<long>* v, int heapSize, long index)
 {
 
-	int left = (index+1) * 2 - 1;
-	int right = (index+1)*2;
-	int largest = 0;
+	long left = (index+1) * 2 - 1;
+	long right = (index+1)*2;
+	long largest = 0;
 
 	if(left < heapSize && v->at(left) > v->at(index))
 	{
@@ -69,7 +78,7 @@ void Heuristic::maxHeapify(std::vector<int>* v, int heapSize, int index)
 	if(largest != index)
 	{
 
-		int aux = v->at(index);
+		long aux = v->at(index);
 		v->at(index) = v->at(largest);
 		v->at(largest) = aux;
 
@@ -79,7 +88,7 @@ void Heuristic::maxHeapify(std::vector<int>* v, int heapSize, int index)
 
 }
 
-void Heuristic::heapsort(std::vector<int>* v, int size)
+void Heuristic::heapsort(std::vector<long>* v, int size)
 {
 
 	int heapSize = size;
@@ -90,7 +99,7 @@ void Heuristic::heapsort(std::vector<int>* v, int size)
 	for(int i = size-1; i > 0; --i)
 	{
 
-		int aux = v->at(i);
+		long aux = v->at(i);
 		v->at(i) = v->at(0);
 		v->at(0) = aux;
 
@@ -101,7 +110,7 @@ void Heuristic::heapsort(std::vector<int>* v, int size)
 
 }
 
-void Heuristic::insertionSort(std::vector<int>* v, int size)
+void Heuristic::insertionSort(std::vector<long>* v, int size)
 {
 
 	for(int i = 1; i < size; ++i)
@@ -133,10 +142,10 @@ void Heuristic::insertionSort(std::vector<int>* v, int size)
 
 }
 
-void Heuristic::introsort(std::vector<int>* v, int size)
+void Heuristic::introsort(std::vector<long>* v, int size)
 {
 
-	int part_size = partition(v, 0, size-1);
+	long part_size = partition(v, 0, size-1);
 
 	if(part_size < 16)
 	{
@@ -153,13 +162,13 @@ void Heuristic::introsort(std::vector<int>* v, int size)
 
 }
 
-void Heuristic::radixSort_num(std::vector<int>* v, int size)
+void Heuristic::radixSort_num(std::vector<long>* v, int size)
 {
 
 	int j;
-	int* v_aux = new int[size];
+	long* v_aux = new long[size];
 
-	for(int sft = 31; sft > -1; --sft)
+	for(long sft = 31; sft > -1; --sft)
 	{
 
 		j = 0;
@@ -191,7 +200,7 @@ void Heuristic::radixSort_num(std::vector<int>* v, int size)
 
 }
 
-void Heuristic::countingSort(std::vector<int>* v, int size)
+void Heuristic::countingSort(std::vector<long>* v, int size)
 {
 
 	int z = 0;
@@ -225,36 +234,47 @@ void Heuristic::countingSort(std::vector<int>* v, int size)
 void Heuristic::analysis(std::vector<std::string>* v, int size)
 {
 
-	std::locale loc;
+	//std::locale loc;
 	int sort = 0;
-	int unsort = 0;
-
-	if(size < 20)
-		is_insert = true;
+	int aux;
+	//int 
+	v_internal.reserve(size);
 
 	for(int i = 0; i < size; i++)
 	{
-		
+
+		v_internal.push_back(atol(v->at(i).c_str()));
+
 		if(i == size-1)
 			break;
 
-		if(atoi(v->at(i).c_str()) <= atoi(v->at(i+1).c_str()))
+		if(atol(v->at(i).c_str()) <= atol(v->at(i+1).c_str()))
 		{
 			sort++;
 		}
-		else
-		{
-			unsort++;
-		}
+
+		//if(v->at(i).find_first_of() == v->at(i).end())
 
 	}
 
-	if(sort/unsort > 10)//colocar alguma coisa aqui pra definir o quão ordneado é
+	if(size <= 20)
+		is_insert = true;
+
+	if(((float)sort/size)*100 > 85)//colocar alguma coisa aqui pra definir o quão ordneado é
 		entropy = true;
 
-	/*std::cout << "sort " << sort << std::endl;
-	std::cout << "unsort " << unsort << std::endl;
-	std::cout << "div " << sort/unsort << std::endl;*/
+	//chavae máxima
+	long elem_max = *max_element(v_internal.begin(), v_internal.end());
+	if(elem_max < 10000)
+		max = true;
+
+
+	std::set<long> set_aux_diff(v_internal.begin(), v_internal.end());
+    aux = set_aux_diff.size();
+    if(((float)aux/size)*100 <= 50) //mais de 50% da variáveis repetidas
+    	count_enable = true;
+
+    
 
 }
 
@@ -263,35 +283,46 @@ void Heuristic::heuristic(std::vector<std::string>* v, int size)
 
 	analysis(v, size);
 
-	if(is_string)
+	/*if(is_string)
 	{
 		//radiz string
-		break;
-	}
+		return;
+	}*/
 
 	if(is_insert)
-	{
-		//insertion
-		break;
+	{	
+		std::cout << "insertion sort" << std::endl;
+		insertionSort(&v_internal, size);
+		for(int i = 0; i < size; i++)
+			std::cout << v_internal[i] << std::endl;
+		return;
 	}
 
-	if(repetidos && max < 10000)
+	if(count_enable && max)
 	{
-		//counting
+		std::cout << "counting sort" << std::endl;
+		countingSort(&v_internal, size);
+		for(int i = 0; i < size; i++)
+			std::cout << v_internal[i] << std::endl;
 	}
 	else
 	{
 
 		if(entropy)
 		{
-			//intro
+			std::cout << "introsort" << std::endl;
+			introsort(&v_internal, size);
+			for(int i = 0; i < size; i++)
+				std::cout << v_internal[i] << std::endl;
 		}
 		else
 		{
-			//radix num
+			std::cout << "radix sort num" << std::endl;
+			radixSort_num(&v_internal, size);
+			for(int i = 0; i < size; i++)
+				std::cout << v_internal[i] << std::endl;
 		}
 
 	}
-
 
 }
