@@ -2,6 +2,7 @@ Trabalho 5 de APA - Problema da mochila
 ===================
 
 Alunos: Felipe da Cunha, 11328535
+
 	Wellton Thyago de Souza, 11325715
 -----------
 
