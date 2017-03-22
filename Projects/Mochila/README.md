@@ -1,9 +1,8 @@
 Trabalho 5 de APA - Problema da mochila
 ===================
 
-Alunos: Felipe da Cunha, 11328535
------------
-	Wellton Thyago de Souza, 11325715
+Alunos: Felipe da Cunha, 11328535.
+	Wellton Thyago de Souza, 11325715.
 -----------
 
 **Atenção**, antes de executar o código, **leia** esse documento:
