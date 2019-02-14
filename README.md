@@ -19,4 +19,4 @@ For more information, access each folder on the folder [Project](Project). Each 
 
 
 
-##### These algorithms were implemented by Felipe da Cunha and Wellton Thyago.
+###### These algorithms were implemented by Felipe da Cunha and Wellton Thyago.
